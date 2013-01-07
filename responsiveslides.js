@@ -23,6 +23,7 @@
       "pauseControls": true,    // Boolean: Pause when hovering controls, true or false
       "prevText": "Previous",   // String: Text for the "previous" button
       "nextText": "Next",       // String: Text for the "next" button
+      "pauseOnClick": false,    // Boolean: Pause on click of navigation
       "maxwidth": "",           // Integer: Max-width of the slideshow, in pixels
       "navContainer": "",       // Selector: Where auto generated controls should be appended to, default is after the <ul>
       "manualControls": "",     // Selector: Declare custom pager navigation
@@ -290,6 +291,12 @@
 
             // Do the animation
             slideTo(idx);
+
+            // Stop on click of pager
+          if (settings.pauseOnClick) {
+            clearInterval(rotate);
+            settings.auto = false;
+          }
           })
             .eq(0)
             .closest("li")
